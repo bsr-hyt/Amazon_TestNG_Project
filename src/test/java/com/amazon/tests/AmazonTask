@@ -1,0 +1,23 @@
+Amazon Senaryosu
+
+o https://www.amazon.com.tr/ sitesi açılır.
+o Ana sayfanın açıldığı kontrol edilir.
+o Çerez tercihlerinden Çerezleri kabul et seçilir.
+o Siteye login olunur.
+o Login işlemi kontrol edilir.
+o Hesabım bölümünden “SetCard Liste” isimli yeni bir liste oluşturulur.
+o Arama butonu yanındaki kategoriler tabından bilgisayar seçilir.
+o Bilgisayar kategorisi seçildiği kontrol edilir.
+o Arama alanına msi yazılır ve arama yapılır.
+o Arama yapıldığı kontrol edilir.
+o Arama sonuçları sayfasından 2. sayfa açılır.
+o 2. sayfanın açıldığı kontrol edilir.
+o Sayfadaki 2. ürün oluşturulan “SetCard Liste” listesine eklenir.
+o 2. Ürünün listeye eklendiği kontrol edilir.
+o Hesabım - Alışveriş Listesi sayfasına gidilir.
+o “Alışveriş Listesi” sayfası açıldığı kontrol edilir.
+o Eklenen ürün SetCard Liste’sinden silinir.
+o Oluşturulan SetCard Listesi silinir.
+o Silme işleminin gerçekleştiği kontrol edilir.
+o Üye çıkış işlemi yapılır.
+o Çıkış işleminin yapıldığı kontrol edilir.
