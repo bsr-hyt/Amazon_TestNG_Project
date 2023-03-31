@@ -392,7 +392,6 @@ public class BrowserUtils {
             }
         }
     }
-
     /**
      *  checks that an element is present on the DOM of a page. This does not
      *    * necessarily mean that the element is visible.
@@ -403,6 +402,29 @@ public class BrowserUtils {
         new WebDriverWait(Driver.get(), time).until(ExpectedConditions.presenceOfElementLocated(by));
         //WebDriverWait wait = new WebDriverWait(Driver.get(), Duration.ofSeconds(20));
         //wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+
+    public static void handleToStaleElementAndClick(WebElement element){
+        WebDriverWait wait = new WebDriverWait(Driver.get(),7);
+        if(!wait.until(ExpectedConditions.stalenessOf(element))){
+            element.click();
+        }else{
+            wait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(element)));
+            element.click();
+        }
+    }
+
+    public static void handleToStaleElementAndClick(WebElement element,By by){
+        try {
+            element.click();
+        }catch (StaleElementReferenceException staleElementReferenceException){
+            staleElementReferenceException.printStackTrace();
+            WebElement element1 = Driver.get().findElement(by);
+            element1.click();
+        }catch (WebDriverException webDriverException){
+            webDriverException.printStackTrace();
+        }
     }
 
 }
