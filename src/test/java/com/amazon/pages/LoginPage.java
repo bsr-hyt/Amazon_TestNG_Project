@@ -25,8 +25,6 @@ public class LoginPage extends BasePage{
     @FindBy(css = "#signInSubmit")
     public WebElement loginButton;
 
-
-
     public void login(){
         BrowserUtils.hover(userAccountName);
         BrowserUtils.clickWithJS(enterloginBtn);

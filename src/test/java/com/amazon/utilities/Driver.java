@@ -15,20 +15,17 @@ public class Driver {
 
     private Driver() {}
 
-    private static WebDriver driver; //nesne üretilmesin diye private yaptık; singleton.
-                                     // singleton; bütün test koşumu boyunca aynı driver a point olma.
-                                     //ilk testte driverım null idi, chrome yüklendi. After method çalıştı; driverım kapandı; closeDriver()
-                                     //ikinci testte..
+    private static WebDriver driver;
 
     public static WebDriver get() {
-        if (driver == null) {   //1.testte driverım null olacak.
-            String browser = ConfigurationReader.get("browser"); //--> burada hangi browserı döndüreceğini belirliyoruz.
+        if (driver == null) {
+            String browser = ConfigurationReader.get("browser");
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
-                case "chrome-headless": //chrome açılmadan arka planda bir browser açar, ve test koşulur; pc yi yormaz; iyidir.
+                case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
                     break;
@@ -36,7 +33,7 @@ public class Driver {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     break;
-                case "firefox-headless": //firefox açılmadan arka planda bir browser açar, ve test koşulur.
+                case "firefox-headless":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver(new FirefoxOptions().setHeadless(true));
                     break;
@@ -61,7 +58,6 @@ public class Driver {
                     driver = new SafariDriver();
                     break;
             }
-
         }
         return driver;
     }
@@ -73,10 +69,5 @@ public class Driver {
         }
     }
 
-    //NOT!!! Driver metodu neden static?
-    //farklı testlerde aynı anda kullanılacaksa metodu or variableı static yaparız.
-
-    //NOT!!!
-    //configuration.properties de configuration kısmını değiştirebilirsin, ancak uzantısı  .properties olmalı.
 
 }

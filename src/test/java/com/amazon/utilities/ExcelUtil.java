@@ -18,7 +18,7 @@ public class ExcelUtil {
     private Workbook workBook;
     private String path;
 
-    public ExcelUtil(String path, String sheetName) { //constructor method; yani obje oluşturuken her zaman bizden iki parametre isteyecek.
+    public ExcelUtil(String path, String sheetName) {
         this.path = path;
         try {
             // Open the Excel file

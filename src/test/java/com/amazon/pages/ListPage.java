@@ -11,7 +11,6 @@ import java.util.List;
 public class ListPage extends BasePage {
 
     static public int priorWishlistSize;
-
     static public int currentWishlistSize;
 
     @FindBy(css = "input[class='a-button-input']")
@@ -41,7 +40,7 @@ public class ListPage extends BasePage {
     @FindBy(id = "editYourList")
     public WebElement editYourList;
 
-    @FindBy(xpath = "(//span[.='Listeyi sil']//span)[1]")
+    @FindBy(xpath = "//span[.='Listeyi sil']//span/span")
     public WebElement deleteWishlistButton;
 
     @FindBy(xpath = "//input[@name='submit.save']")
@@ -57,6 +56,13 @@ public class ListPage extends BasePage {
         createAListButtonFinal.click();
     }
 
+    public void goToWisListAfterAddProductToList(){
+        DashboardPage dashboardPage = new DashboardPage();
+        BrowserUtils.clickWithJS(continueToShoppingButton);
+        BrowserUtils.scrollToElement(userAccountName);
+        dashboardPage.clickMyWishlist();
+    }
+
     public void getDeleteProductFromWishlist() {
         BrowserUtils.clickWithJS(deleteProductFromWishlist);
     }
@@ -69,9 +75,9 @@ public class ListPage extends BasePage {
         BrowserUtils.clickWithJS(editYourList);
         BrowserUtils.scrollToElement(deleteWishlistButton);
         BrowserUtils.clickWithJS(deleteWishlistButton);
-        BrowserUtils.waitForPresenceOfElement(By.xpath("//input[@name='submit.save']"),5);
+        BrowserUtils.waitFor(2);
         BrowserUtils.clickWithJS(submitSaveButton);
-        BrowserUtils.waitForPresenceOfElement(By.xpath("//div[@id='your-lists-nav']/div"), 3);
+        BrowserUtils.waitFor(2);
         currentWishlistSize = wishlists.size();
         System.out.println("currentWishlistSize = " + currentWishlistSize);
     }

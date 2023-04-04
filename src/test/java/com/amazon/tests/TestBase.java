@@ -34,14 +34,10 @@ public class TestBase {
         driver = Driver.get();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-
-//        webDriverWait = new WebDriverWait(driver,7);
-//        actions = new Actions(driver);
     }
 
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException, InterruptedException {
-
         if(result.getStatus() == ITestResult.FAILURE){
             extentLogger.fail(result.getName());
             String screenShotPath = BrowserUtils.getScreenshot(result.getName());
@@ -49,22 +45,17 @@ public class TestBase {
             extentLogger.fail(result.getThrowable());
         }
         Thread.sleep(2000);
-//        Driver.closeDriver();
+        Driver.closeDriver();
     }
 
     @BeforeTest
     public void setUpTest(){
         report = new ExtentReports();
-
         String projectPath = System.getProperty("user.dir");
         String reportPath = projectPath + "/test-output/report.html";
-
         htmlReporter = new ExtentHtmlReporter(reportPath);
-
         report.attachReporter(htmlReporter);
-
         htmlReporter.config().setReportName("Batch 3 Smoke Test");
-
         report.setSystemInfo("Environment", "Test");
         report.setSystemInfo("Browser", ConfigurationReader.get("browser"));
         report.setSystemInfo("OS", System.getProperty("os.name"));

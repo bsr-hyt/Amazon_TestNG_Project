@@ -15,8 +15,6 @@ public class BasePage {
         PageFactory.initElements(Driver.get(), this);
     }
 
-//    @FindBy(id = "nav-logo-sprites")
-//    public WebElement amazontrTitle;
 
     @FindBy(id="sp-cc-accept")
     public WebElement cookiesAcceptButton;
@@ -48,9 +46,9 @@ public class BasePage {
     public void clickCategoryDropDownBox(String module){
         Select select = new Select(categoryDropDownBox);
         select.selectByVisibleText(module);
-        BrowserUtils.handleToStaleElementAndClick(computerDropDownMenu,By.xpath("//option[.='Bilgisayarlar']"));
-//        BrowserUtils.waitForClickablility(getDropDownMenuWebElement(module),3);
-//       BrowserUtils.clickWithJS(getDropDownMenuWebElement(module));
+//        BrowserUtils.handleToStaleElementAndClick(computerDropDownMenu,By.xpath("//option[.='Bilgisayarlar']"));
+        select.getFirstSelectedOption().click();
+
     }
 
     public WebElement getDropDownMenuWebElement(String moduleName){

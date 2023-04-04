@@ -10,15 +10,11 @@ public class ComputerPage extends BasePage{
 
     @FindBy(xpath = "//span[.='\"msi\"']")
     public WebElement checkOfText;
-
     @FindBy(linkText = "2")
     public WebElement secondPage;
 
     @FindBy(xpath = "//span[@aria-label='Geçerli sayfa, sayfa 2']")
     public WebElement secondPageAfterMoving;
-
-
-
 
 
     public WebElement getCheckOfTextWebElement(String text){
