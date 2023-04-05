@@ -39,6 +39,7 @@ public class BrowserUtils {
 
     /**
      * Switches to new window by the exact title. Returns to original window if target title not found
+     *
      * @param targetTitle
      */
     public static void switchToWindow(String targetTitle) {
@@ -299,6 +300,7 @@ public class BrowserUtils {
 
     /**
      * Highlighs an element by changing its background and border color
+     *
      * @param element
      */
     public static void highlight(WebElement element) {
@@ -392,9 +394,11 @@ public class BrowserUtils {
             }
         }
     }
+
     /**
-     *  checks that an element is present on the DOM of a page. This does not
-     *    * necessarily mean that the element is visible.
+     * checks that an element is present on the DOM of a page. This does not
+     * * necessarily mean that the element is visible.
+     *
      * @param by
      * @param time
      */
@@ -405,24 +409,34 @@ public class BrowserUtils {
     }
 
 
-    public static void handleToStaleElementAndClick(WebElement element){
-        WebDriverWait wait = new WebDriverWait(Driver.get(),7);
-        if(!wait.until(ExpectedConditions.stalenessOf(element))){
+    public static void handleToStaleElement(WebElement element) {
+        for (int i = 0; i < 5; i++) {
+            try {
+                if (element.isDisplayed()) break;
+            } catch (StaleElementReferenceException staleElementReferenceException) {
+                staleElementReferenceException.printStackTrace();
+            }
+        }
+    }
+
+    public static void handleToStaleElementAndClick(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(Driver.get(), 7);
+        if (!wait.until(ExpectedConditions.stalenessOf(element))) {
             element.click();
-        }else{
+        } else {
             wait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(element)));
             element.click();
         }
     }
 
-    public static void handleToStaleElementAndClick(WebElement element,By by){
+    public static void handleToStaleElementAndClick(WebElement element, By by) {
         try {
             element.click();
-        }catch (StaleElementReferenceException staleElementReferenceException){
+        } catch (StaleElementReferenceException staleElementReferenceException) {
             staleElementReferenceException.printStackTrace();
             WebElement element1 = Driver.get().findElement(by);
             element1.click();
-        }catch (WebDriverException webDriverException){
+        } catch (WebDriverException webDriverException) {
             webDriverException.printStackTrace();
         }
     }
